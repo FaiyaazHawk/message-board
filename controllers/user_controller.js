@@ -17,15 +17,12 @@ exports.all_users = (req,res,next) => {
             res.json(users)
         })
 }
-//GET signup page
-exports.signup_get = (req,res,next) => {
-    res.send("signup page")
-}
+
 //POST signup page and user creation
 exports.signup_post = [
     body("first_name").trim().isLength({min: 1}).escape().withMessage("First name is required"),
     body("last_name").trim().isLength({min: 1}).escape().withMessage("Last name is required"),
-    body("email").trim().isLength({min: 1}).escape().withMessage("Email is required"),
+    body("username").trim().isLength({min: 1}).escape().withMessage("User name is required"),
     body("password").trim().isLength({min:6}).escape().withMessage("Password must be atleast 6 characters long"),
     body("confirmPassword").trim().isLength({min:6}).escape().withMessage("Password must be atleast 6 characters long")
         .custom(async (value, {req}) => {
@@ -54,7 +51,7 @@ exports.signup_post = [
                 const user = new User({
                     first_name: req.body.first_name,
                     last_name: req.body.last_name,
-                    email: req.body.email,
+                    username: req.body.username,
                     password: hashedPassword,
                     member: false,
                     admin: false,
