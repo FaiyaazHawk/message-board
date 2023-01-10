@@ -35,12 +35,12 @@ exports.signup_post = [
         //error validation
         const errors = validationResult(req);
         if(!errors.isEmpty()) {
-            console.log('errors present')
+            console.log(errors)
             return res.redirect('/error') //send to error page
 
         }
         try {
-            const userInDb = await User.find({"email": req.body.email});
+            const userInDb = await User.find({"username": req.body.username});
             if (userInDb.length > 0) {
                 console.log("user in database")
                 return res.redirect('/error') //send to error page
