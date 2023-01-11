@@ -7,6 +7,7 @@ var logger = require('morgan');
 var session = require('express-session')
 var passport = require('passport')
 var LocalStrategy = require('passport-local').Strategy;
+var bcrypt = require('bcrypt')
 
 //routers
 var indexRouter = require('./routes/index');
@@ -38,28 +39,22 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-//authentication and session middleware.
-app.use(session({ secret: process.env.SECRET, resave: false, saveUninitialized: true }));
-app.use(passport.initialize());
-app.use(passport.session());
+
 
 //passport localStrategy setup
-passport.use(
-  new LocalStrategy((username, password, done) => {
-    User.findOne({username:username}, (err,user)=>{
-      if (err) {
-        return done(err);
-      }
-      if(!user) {
-        return done(null, false, {message: "Unknown username"});
-      }
-      if(user.password !== password) {
-        return done(null, false, { message: "Incorrect password" });
-      }
-      return done(null, user)
-    })
-  })
-)
+passport.use(new LocalStrategy((username, password, done) => {
+  User.findOne({ username: username }, (err, user) => {
+    if (err) return done(err);
+    if (!user) return done(null, false, { message: "Incorrect username" });
+    bcrypt.compare(password, user.password, (err, res) => {
+      if (err) return done(err);
+      // Passwords match, log user in!
+      if (res) return done(null, user);
+      // Passwords do not match!
+      else return done(null, false, { message: "Incorrect password" });
+    });
+  });
+}));
 
 //sessions and serialization
 passport.serializeUser(function(user, done) {
@@ -72,7 +67,10 @@ passport.deserializeUser(function(id, done) {
   });
 });
 
-
+//authentication and session middleware.
+app.use(session({ secret: process.env.SECRET, resave: false, saveUninitialized: true }));
+app.use(passport.initialize());
+app.use(passport.session());
 
 
 

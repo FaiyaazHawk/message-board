@@ -10,9 +10,10 @@ router.get('/', function (req,res,next) {
 
 //POST route
 
-router.post('/', passport.authenticate('local', {
-    successRedirect: '/',
-    failureRedirect: '/error' 
-}))
+router.post('/', 
+  passport.authenticate('local', { failureRedirect: '/login' }),
+  function(req, res) {
+    res.render('index', {title: 'Welcome Back'})
+  });
 
 module.exports = router
