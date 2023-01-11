@@ -4,20 +4,13 @@ const User = require('../models/user')
 
 //get all messages
 
-exports.all_messages = (req,res,next) => {
-    Message.find()///figure out how to sort by latest timestamp
-        .exec(function (err,messages) {
-            if (err) {
-                return next(err);
-            }
-            console.log('hits this')
-            console.log(messages)
-            return messages
-        })
+exports.all_messages = function () {
+    const messages = Message.find()
+    console.log('hello')
+    console.log(messages)
+    return messages;
+    
 }
-
-
-
 
 
 exports.createMessage_post = [
@@ -40,8 +33,6 @@ exports.createMessage_post = [
             author: req.user,
              //find where author status is stored with passport js
         });
-        let messages = this.all_messages()
-        console.log(messages)
         message.save(err => err ? next(err) : res.render('index', {messages:messages}))
     }
 ]
