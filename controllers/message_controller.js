@@ -1,5 +1,6 @@
 const Message = require("../models/message")
 const {body, validationResult} = require('express-validator')
+const User = require('../models/user')
 
 //get all messages
 
@@ -9,25 +10,15 @@ exports.all_messages = (req,res,next) => {
             if (err) {
                 return next(err);
             }
-            res.json(messages)
+            console.log('hits this')
+            console.log(messages)
+            return messages
         })
 }
 
-//get a single message
 
-exports.get_message = (req,res,next) => {
-    Message.findById(req.params.id)
-        .exec(function (err,message) {
-            if (err) {
-                return next(err)
-            }
-            res.json(message)
-        })
-}
 
-exports.createMessage_get = (req,res,next) => {
-    res.send('create message page')
-}
+
 
 exports.createMessage_post = [
     body("title").trim().isLength({min:1}).escape().withMessage("Title is required"),
@@ -36,16 +27,21 @@ exports.createMessage_post = [
     async (req,res,next) => {
         //error validation
         const errors = validationResult(req);
+        
         if(!errors.isEmpty()) {
             console.log('errors present')
             return res.redirect('/error') //send to error page
         }
         //create new message
+        
         const message = new Message({
             title:req.body.title,
             message:req.body.message,
-            author: req.locals.currentUser, //find where author status is stored with passport js
+            author: req.user,
+             //find where author status is stored with passport js
         });
-        message.save(err => err ? next(err) : res.redirect('/'))
+        let messages = this.all_messages()
+        console.log(messages)
+        message.save(err => err ? next(err) : res.render('index', {messages:messages}))
     }
 ]

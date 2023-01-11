@@ -3,13 +3,24 @@ extends layout
 block content
   h1= title 
  
-  .nav-bar 
-    a(href='/signup') Sign up
+  .nav-bar
+    if (!user) 
+      a(href='/signup') Sign up
+      <br>
+    if (!user)
+      a(href='/login') Login
     <br>
-    a(href='/login') Login
+    if (!member && user) 
+      a(href='/join') Join Club
     <br>
-    a(href='/users') Users
+    if (user && member) 
+      a(href='/create') Create Message
+    <br>
+    if admin 
+      a(href='/users') Users
+    <br>
 
-
-  if user
-    h1 hello #{user.name}
+  .message-panel 
+    if messages
+      each message in messages 
+        p= message

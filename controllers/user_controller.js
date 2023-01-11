@@ -1,6 +1,7 @@
 const {body, validationResult} = require('express-validator')
 const bcrypt = require('bcrypt')
 
+
 //models
 const User = require("../models/user");
 
@@ -68,3 +69,16 @@ exports.signup_post = [
 
     }
 ]
+
+
+exports.joinmem_post = async (req,res,next) => {
+    
+    if (req.body.mempassword !== process.env.MEMBERSHIP) {
+        res.render('joinform', {error: "Password incorrect, Try Again"})
+    } else {
+        //get username from req.user
+        
+        req.user = await User.findOneAndUpdate({username: req.user.username}, {member:true}, {new:true})
+        res.render('index', {title: `hello member ${req.user.username}`, member: true})
+    }
+}

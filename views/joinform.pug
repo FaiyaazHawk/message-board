@@ -1,0 +1,15 @@
+extends layout 
+
+block content 
+
+    h1= title
+    h2 Enter password to join the club #{user.first_name}
+    if error 
+        p= error
+
+    form(action="/join", method="post", class="joinForm" )
+        
+        label(for="mempassword") Password 
+        input(type="text" name="mempassword")
+        <br>
+        input(type="submit", value="Submit")

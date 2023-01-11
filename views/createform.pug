@@ -1,0 +1,15 @@
+extends layout 
+
+block content 
+
+    h1 Whats your message
+
+    form(action="/create", method="post", class="messageForm" )
+        
+        label(for="title") Title
+        input(type="text" name="title")
+        <br>
+        label(for="message") Message
+        input(type="text-area" name="message")
+        <br>
+        input(type="submit", value="Submit")
