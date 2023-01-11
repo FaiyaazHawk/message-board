@@ -1,7 +1,7 @@
 extends layout
 
 block content
-  h1= title
+  h1= title 
  
   .nav-bar 
     a(href='/signup') Sign up
@@ -9,3 +9,7 @@ block content
     a(href='/login') Login
     <br>
     a(href='/users') Users
+
+
+  if user
+    h1 hello #{user.name}

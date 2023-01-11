@@ -72,6 +72,11 @@ app.use(session({ secret: process.env.SECRET, resave: false, saveUninitialized: 
 app.use(passport.initialize());
 app.use(passport.session());
 
+// Access the user object from anywhere in our application
+app.use((req, res, next) => {
+  res.locals.user = req.user;
+  next();
+});
 
 
 //router usage

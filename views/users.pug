@@ -1,0 +1,9 @@
+extend layout 
+
+block content 
+
+    h1 Here is a list of current signed up users
+    if users 
+        each user in users 
+            p= user.first_name + " " + user.last_name
+    

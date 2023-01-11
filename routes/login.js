@@ -13,7 +13,8 @@ router.get('/', function (req,res,next) {
 router.post('/', 
   passport.authenticate('local', { failureRedirect: '/login' }),
   function(req, res) {
-    res.render('index', {title: 'Welcome Back'})
+    console.log(req.user)
+    res.render('index', {title: `Welcome Back ${req.user.first_name}` , user: req.user})
   });
 
 module.exports = router
