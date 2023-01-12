@@ -5,7 +5,8 @@ var user_controller = require('../controllers/user_controller')
 //get join page
 
 router.get('/', function (req,res,next) {
-    res.render('joinform', {title: 'Join the club', user: req.user})
+    
+    res.render('joinform', {title: 'Join the club', })
 })
 
 //post join page

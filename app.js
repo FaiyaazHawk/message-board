@@ -11,11 +11,11 @@ var bcrypt = require('bcrypt')
 
 //routers
 var indexRouter = require('./routes/index');
-var usersRouter = require('./routes/users');
 var signupRouter = require('./routes/signup');
 var loginRouter = require('./routes/login');
 var joinRouter = require('./routes/join')
 var createRouter = require('./routes/createmessage')
+var logoutRouter = require('./routes/logout')
 
 //models
 const User = require('./models/user');
@@ -74,7 +74,7 @@ app.use(session({ secret: process.env.SECRET, resave: false, saveUninitialized: 
 app.use(passport.initialize());
 app.use(passport.session());
 
-// Access the user object from anywhere in our application
+// Access the user object from anywhere in the application
 app.use((req, res, next) => {
   res.locals.user = req.user;
   next();
@@ -83,11 +83,13 @@ app.use((req, res, next) => {
 
 //router usage
 app.use('/', indexRouter);
-app.use('/users', usersRouter);
 app.use('/signup', signupRouter);
 app.use('/login', loginRouter);
-app.use('/join', joinRouter)
-app.use('/create', createRouter)
+app.use('/join', joinRouter);
+app.use('/create', createRouter);
+app.use('/logout', logoutRouter);
+
+
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

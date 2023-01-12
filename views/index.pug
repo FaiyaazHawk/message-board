@@ -2,6 +2,12 @@ extends layout
 
 block content
   h1= title 
+  if (user)
+    h2 Welcome Back #{user.first_name}
+    if (user)
+      form(action="/logout", method="POST", class="logoutbutton" )
+        input(type="submit", value="Logout")
+    <br>
  
   .nav-bar
     if (!user) 
@@ -13,13 +19,17 @@ block content
     if (!member && user) 
       a(href='/join') Join Club
     <br>
-    if (user && member) 
+    if (user && user.member) 
       a(href='/create') Create Message
     <br>
-    if admin 
-      a(href='/users') Users
-    <br>
+    
 
   .message-panel 
     each message in messages 
-      p= message
+      .message
+        p= message.title 
+        p= message.message
+        p= message.timestamp
+        if (user && user.member)
+          p= message.author
+      

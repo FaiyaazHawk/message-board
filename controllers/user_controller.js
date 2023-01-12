@@ -6,19 +6,6 @@ const bcrypt = require('bcrypt')
 const User = require("../models/user");
 
 
-
-
-//brings up list of all users
-exports.all_users = (req,res,next) => {
-    User.find()///figure out how to sort by latest timestamp
-        .exec(function (err,users) {
-            if (err) {
-                return next(err);
-            }
-            res.json(users)
-        })
-}
-
 //POST signup page and user creation
 exports.signup_post = [
     body("first_name").trim().isLength({min: 1}).escape().withMessage("First name is required"),
@@ -77,8 +64,15 @@ exports.joinmem_post = async (req,res,next) => {
         res.render('joinform', {error: "Password incorrect, Try Again"})
     } else {
         //get username from req.user
-        
         req.user = await User.findOneAndUpdate({username: req.user.username}, {member:true}, {new:true})
-        res.render('index', {title: `hello member ${req.user.username}`, member: true})
+        res.redirect('/')
     }
+}
+
+exports.logout_post = (req,res,next) => {
+        req.logout(function(err) {
+          if (err) { return next(err); }
+          res.redirect('/');
+        });
+      ;
 }
