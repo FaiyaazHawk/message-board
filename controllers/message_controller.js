@@ -1,13 +1,13 @@
 const Message = require("../models/message")
 const {body, validationResult} = require('express-validator')
-const User = require('../models/user')
+
 
 //get all messages
 
 exports.all_messages = async (req, res, next) => {
     try {
-      // Populate message with "user" information (reference to user in model)
-      const messages = await Message.find().sort([["timestamp", "descending"]]);
+      // Populate message with "author" information (reference to user in model)
+      const messages = await Message.find().sort([["timestamp", "descending"]]).populate('author');
       return res.render('index', { title: 'Messages', user: req.user, messages: messages });
     } catch (err) {
       return next(err);

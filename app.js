@@ -14,8 +14,9 @@ var indexRouter = require('./routes/index');
 var signupRouter = require('./routes/signup');
 var loginRouter = require('./routes/login');
 var joinRouter = require('./routes/join')
-var createRouter = require('./routes/createmessage')
-var logoutRouter = require('./routes/logout')
+var createRouter = require('./routes/createmessage');
+var logoutRouter = require('./routes/logout');
+var adminRouter = require('./routes/admin')
 
 //models
 const User = require('./models/user');
@@ -88,6 +89,7 @@ app.use('/login', loginRouter);
 app.use('/join', joinRouter);
 app.use('/create', createRouter);
 app.use('/logout', logoutRouter);
+app.use('/admin', adminRouter);
 
 
 

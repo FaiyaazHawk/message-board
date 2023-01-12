@@ -23,8 +23,8 @@ exports.signup_post = [
         //error validation
         const errors = validationResult(req);
         if(!errors.isEmpty()) {
-            console.log(errors)
-            return res.redirect('/error') //send to error page
+            console.log(errors.errors)
+            return res.render('signupform', {title: 'Sign Up Form' ,error:errors.errors}) //send to error page
 
         }
         try {
@@ -65,6 +65,17 @@ exports.joinmem_post = async (req,res,next) => {
     } else {
         //get username from req.user
         req.user = await User.findOneAndUpdate({username: req.user.username}, {member:true}, {new:true})
+        res.redirect('/')
+    }
+}
+
+exports.beAdmin_post = async (req,res,next) => {
+    
+    if (req.body.adminpassword !== process.env.ADMIN) {
+        res.render('adminform', {error: "Password incorrect, Try Again"})
+    } else {
+        //get username from req.user
+        req.user = await User.findOneAndUpdate({username: req.user.username}, {admin:true}, {new:true})
         res.redirect('/')
     }
 }

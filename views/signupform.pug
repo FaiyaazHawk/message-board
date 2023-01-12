@@ -2,6 +2,9 @@ extends layout
 
 block content
     h1 #{title}
+    
+    if (errors)
+        p hello
 
     form(action="/signup", method="post", class="signupForm" )
         label(for="first_name") First Name 

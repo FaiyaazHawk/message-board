@@ -1,0 +1,15 @@
+extends layout 
+
+block content 
+
+    h1= title
+    h2 Enter password to be an admin 
+    if error 
+        p= error
+
+    form(action="/admin", method="post", class="adminForm" )
+        
+        label(for="adminpassword") Password 
+        input(type="text" name="adminpassword")
+        <br>
+        input(type="submit", value="Submit")

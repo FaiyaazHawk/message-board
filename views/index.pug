@@ -16,8 +16,11 @@ block content
     if (!user)
       a(href='/login') Login
     <br>
-    if (!member && user) 
-      a(href='/join') Join Club
+    if (user) 
+      a(href='/join') Join the Club
+    <br>
+    if (user) 
+      a(href='/admin') Be an Admin
     <br>
     if (user && user.member) 
       a(href='/create') Create Message
@@ -27,9 +30,9 @@ block content
   .message-panel 
     each message in messages 
       .message
-        p= message.title 
-        p= message.message
+        p Title: #{message.title}
+        p Message: #{message.message}
         p= message.timestamp
         if (user && user.member)
-          p= message.author
+          p Posted by #{message.author.username}
       
