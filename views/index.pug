@@ -36,8 +36,8 @@ block content
         if (user && user.member)
           p Posted by #{message.author.username}
         if (user && user.admin)
-          div.delete-msg
-              form(action="" method="POST")
-                input#messageId(type="hidden", name="messageId", required="true", value=message._id)
+          div.deletebtn
+              form(action="/" method="POST")
+                input(type="hidden", name="messageId", required="true", value=message._id)
                 button(type="submit") Delete
       
