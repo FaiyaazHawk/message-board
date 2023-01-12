@@ -1,8 +1,94 @@
+* {
+  box-sizing: border-box;
+}
 body {
   padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  font: 2rem "Lucida Grande", Helvetica, Arial, sans-serif;
+  border: #333 5px solid;
 }
 
-a {
-  color: #00B7FF;
+/*Index Page style*/
+
+.nav-bar{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+  background-color: #333;
+  line-height: 3rem;
+}
+
+.nav-bar a {
+  color: #fff;
+  text-decoration: none;
+  cursor: pointer;
+  line-height: 3rem;
+}
+
+.title {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.title p {
+  font-size: larger;
+}
+
+.logoutbar {
+  display: flex;
+}
+
+.logoutbar h2 {
+  width: fit-content;
+}
+
+.log-out-btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-left: 50%;
+}
+
+.log-out-btn input {
+  background-color: #333;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  text-align: center;
+  padding: 10px;
+  font-size: 2rem;
+}
+
+.message-panel {
+  background-color: #333;
+  color: #fff;
+  
+}
+
+.message {
+  padding: 10px;
+  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+  font-style: italic;
+}
+
+.message-title {
+  background-color: rgb(17, 16, 16);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.deletebtn {
+  text-align: right;
+  padding: 10px;
+}
+
+.deletebtn button {
+  font-size: larger;
+  padding: 25px;
+  border-radius: 30px;
+  border: none;
+  background-color: red;
+  color: #fff;
 }

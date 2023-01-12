@@ -1,14 +1,7 @@
 extends layout
 
 block content
-  h1= title 
-  if (user)
-    h2 Welcome Back #{user.first_name}
-    if (user)
-      form(action="/logout", method="POST", class="logoutbutton" )
-        input(type="submit", value="Logout")
-    <br>
- 
+
   .nav-bar
     if (!user) 
       a(href='/signup') Sign up
@@ -20,24 +13,37 @@ block content
       a(href='/join') Join the Club
     <br>
     if (user) 
-      a(href='/admin') Be an Admin
+      a(href='/admin') Be An Admin
     <br>
     if (user && user.member) 
       a(href='/create') Create Message
     <br>
+  .title
+    h1= title 
+  if (user)
+    .logoutbar 
+      h2 Welcome #{user.first_name}
+      if (user)
+      .log-out-btn
+        form(action="/logout", method="POST", class="logoutbutton" )
+          input(type="submit", value="Logout")
+      
+ 
+  
     
 
   .message-panel 
     each message in messages 
       .message
-        p Title: #{message.title}
-        p Message: #{message.message}
+        .message-title
+          p #{message.title}
+        p #{message.message}
         p= message.timestamp
         if (user && user.member)
           p Posted by #{message.author.username}
         if (user && user.admin)
-          div.deletebtn
-              form(action="/" method="POST")
-                input(type="hidden", name="messageId", required="true", value=message._id)
-                button(type="submit") Delete
+          .deletebtn
+            form(action="/" method="POST")
+              input(type="hidden", name="messageId", required="true", value=message._id)
+              button(type="submit") Delete
       
