@@ -8,7 +8,7 @@ exports.all_messages = async (req, res, next) => {
     try {
       // Populate message with "author" information (reference to user in model)
       const messages = await Message.find().sort([["timestamp", "descending"]]).populate('author');
-      return res.render('index', { title: 'Messages', user: req.user, messages: messages });
+      return res.render('index', { title: 'Message Board', user: req.user, messages: messages });
     } catch (err) {
       return next(err);
     }

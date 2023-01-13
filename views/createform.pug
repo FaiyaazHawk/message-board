@@ -1,8 +1,8 @@
 extends layout 
 
 block content 
-
-    h1 Whats your message
+    .messageForm-title
+        h1 Whats your message
 
     form(action="/create", method="post", class="messageForm" )
         
@@ -10,6 +10,8 @@ block content
         input(type="text" name="title")
         <br>
         label(for="message") Message
-        input(type="text-area" name="message")
+        input(type="text-area" name="message" class='messageFormbody')
         <br>
-        input(type="submit", value="Submit")
+        input(type="submit", value="Submit" class='messageFormbtn')
+    <br>
+    a(href='/', class='backbtn' ) Back to Home

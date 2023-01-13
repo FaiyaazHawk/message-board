@@ -23,8 +23,8 @@ exports.signup_post = [
         //error validation
         const errors = validationResult(req);
         if(!errors.isEmpty()) {
-            console.log(errors.errors)
-            return res.render('signupform', {title: 'Sign Up Form' ,error:errors.errors}) //send to error page
+            console.log(errors)
+            return res.render('signupform', {title: 'Sign Up Form' ,errors:errors.errors})
 
         }
         try {

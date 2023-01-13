@@ -4,7 +4,15 @@
 body {
   padding: 50px;
   font: 2rem "Lucida Grande", Helvetica, Arial, sans-serif;
-  border: #333 5px solid;
+  background-color: rgb(148, 146, 146);
+}
+
+.backbtn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-decoration: none;
+  text-align: center;
 }
 
 /*Index Page style*/
@@ -13,9 +21,8 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 1rem;
   background-color: #333;
-  line-height: 3rem;
+  
 }
 
 .nav-bar a {
@@ -23,6 +30,19 @@ body {
   text-decoration: none;
   cursor: pointer;
   line-height: 3rem;
+  padding: 25px;
+}
+
+.createbtn {
+  background-color: green;
+  border-radius: 25px;
+  
+}
+
+.createbtn:hover {
+  border-radius: 25%;
+  color:rgb(148, 146, 146);
+  transform: translateY(-2px);
 }
 
 .title {
@@ -58,18 +78,22 @@ body {
   text-align: center;
   padding: 10px;
   font-size: 2rem;
+  cursor: pointer;
 }
 
 .message-panel {
-  background-color: #333;
-  color: #fff;
+  
+  border-radius: 25px;
   
 }
 
 .message {
-  padding: 10px;
-  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
-  font-style: italic;
+  padding: 10%;
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  border: #fff 5px solid;
+  border-radius: 25px;
+  background-color: #333;
+  color: #fff;
 }
 
 .message-title {
@@ -77,6 +101,17 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+.message-block {
+  padding: 1.5rem;
+  background-color: #fff;
+  color:#333;
+  
+}
+
+.message-username {
+  font-style: italic;
 }
 
 .deletebtn {
@@ -91,4 +126,120 @@ body {
   border: none;
   background-color: red;
   color: #fff;
+  cursor: pointer;
+}
+
+footer{
+  text-align: center;
+}
+
+/*Sign Up Page*/
+
+.signupForm-title {
+  padding-left: 10%;
+}
+
+.signupForm {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 15px;
+  font-size: 2rem;
+  
+}
+.signupForm input {
+  width: 80%;
+  border-radius: 30px;
+  box-shadow:0 0 15px 4px rgba(0,0,0,0.06);
+  text-align: center;
+  height: 2rem;
+}
+.signupFormbtn{
+  background-color: rgb(36, 168, 43);
+  width: auto;
+  
+}
+
+
+
+/*Login Page*/
+
+.loginForm-title {
+  padding-left: 10%;
+}
+.loginForm {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.loginForm input {
+  width: 80%;
+  border-radius: 30px;
+  box-shadow:0 0 15px 4px rgba(0,0,0,0.06);
+  text-align: center;
+  height: 2rem;
+}
+
+.loginFormbtn {
+  background-color: rgb(36, 168, 43);
+  width: auto;
+}
+
+/*Join Page and Admin Page*/
+
+.joinForm, .adminForm {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.joinForm input, .adminForm input {
+  width: 80%;
+  border-radius: 30px;
+  box-shadow:0 0 15px 4px rgba(0,0,0,0.06);
+  text-align: center;
+  height: 2rem;
+  font-size: 1.75rem;
+}
+
+.joinFormbtn, .adminFormbtn {
+  background-color: rgb(36, 168, 43);
+  width: auto;
+}
+
+/*Create Message Page*/
+
+.messageForm {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  
+}
+
+.messageForm-title {
+  padding-left: 10%;
+}
+
+.messageForm input {
+  width: 80%;
+  border-radius: 30px;
+  box-shadow:0 0 15px 4px rgba(0,0,0,0.06);
+  text-align: center;
+  height: 2rem;
+  font-size: 1.75rem;
+}
+
+.messageFormbody {
+  line-height: 3rem;
+  
+}
+
+.messageFormbtn {
+  background-color: rgb(36, 168, 43);
+  width: auto;
 }

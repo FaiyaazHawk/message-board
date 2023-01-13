@@ -15,8 +15,9 @@ block content
     if (user) 
       a(href='/admin') Be An Admin
     <br>
-    if (user && user.member) 
-      a(href='/create') Create Message
+    if (user && user.member)
+      .createbtn
+        a(href='/create') Create Message
     <br>
   .title
     h1= title 
@@ -37,13 +38,18 @@ block content
       .message
         .message-title
           p #{message.title}
-        p #{message.message}
-        p= message.timestamp
+        .message-block
+          p #{message.message}
         if (user && user.member)
-          p Posted by #{message.author.username}
+          p #{message.timestamp}
+        if (user && user.member)
+          .message-username
+            p Posted by #{message.author.username}
         if (user && user.admin)
           .deletebtn
             form(action="/" method="POST")
               input(type="hidden", name="messageId", required="true", value=message._id)
               button(type="submit") Delete
       
+  footer 
+    p Made by Faiyaaz    

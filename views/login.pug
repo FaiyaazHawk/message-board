@@ -1,8 +1,8 @@
 extends layout 
 
 block content 
-
-    h1 #{title}
+    .loginForm-title
+        h1 #{title}
 
     form(action="/login", method="post", class="loginForm" )
         
@@ -10,6 +10,8 @@ block content
         input(type="text" name="username")
         br
         label(for="password") Password 
-        input(type="text" name="password")
+        input(type="password" name="password")
         br
-        input(type="submit", value="Submit")
+        input(type="submit", value="Submit" class='loginFormbtn')
+    <br>
+    a(href='/', class='backbtn' ) Back to Home

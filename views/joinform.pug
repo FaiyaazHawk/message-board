@@ -10,6 +10,8 @@ block content
     form(action="/join", method="post", class="joinForm" )
         
         label(for="mempassword") Password 
-        input(type="text" name="mempassword")
+        input(type="password" name="mempassword")
         <br>
-        input(type="submit", value="Submit")
+        input(type="submit", value="Submit" class='joinFormbtn')
+    <br>
+    a(href='/', class='backbtn' ) Back to Home
