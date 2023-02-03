@@ -1,6 +1,6 @@
 # Message-board
 Message board with login and posting features. Made with express, node.js, mongoose and pug. Used MongoDB for database and Render to host.
-> Live demo [here](https://message-board-a9ln.onrender.com/).
+> Live demo [here](https://message-board-a9ln.onrender.com/). Does take a minute or so to load from cold start (due to Render limitation of free tier)
 
 
 
